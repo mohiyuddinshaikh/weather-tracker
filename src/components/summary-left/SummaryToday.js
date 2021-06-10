@@ -154,7 +154,7 @@ function SummaryToday(props) {
 
   return (
     <div
-      className="w-full sm:w-full md:w-1/4 h-screen px-4 py-8 md:p-10 shadow"
+      className="w-full sm:w-full md:w-1/4 h-auto px-4 py-8 md:p-10 shadow"
       style={{
         background: backgroundColor,
       }}
