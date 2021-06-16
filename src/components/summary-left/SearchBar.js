@@ -4,8 +4,11 @@ import {
   fetch7DayForecastData,
   fetchBasicWeatherData,
 } from "../../reusable-functions/weather-api";
+import { useDispatch } from "react-redux";
+import * as WeatherActions from "../../store/actions/weather.action";
 
 export default function SearchBar(props) {
+  let dispatch = useDispatch();
   const { setBasicWeather, setForecastWeather } = props;
 
   const [searchText, setSearchText] = useState(null);
@@ -27,8 +30,10 @@ export default function SearchBar(props) {
           res.coord.lat,
           res.coord.lon
         );
-        setForecastWeather(forecastResponse);
         setBasicWeather(res);
+        setForecastWeather(forecastResponse);
+        dispatch(WeatherActions.updateWeather(res));
+        dispatch(WeatherActions.updateAdvanceForecast(forecastResponse));
       }
     } catch (error) {
       console.log("error :>> ", error);
